@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
+import ProgressBar from '@ramonak/react-progress-bar';
 
 class App extends Component {
   state = {
@@ -25,13 +26,13 @@ class App extends Component {
   render() {
     let { posts } = this.state;
     if (posts.length === 0) {
-      return <h1 style={{ textAlign: 'center' }}>Loading...</h1>
+      return <ProgressBar completed={100} borderRadius="0px" bgcolor='#008000' />
     } else {
       return (
         <div className="App">
-          {this.state.posts.map(post => {
+          {posts.map(post => {
             return (
-              <div>
+              <div key={post.id}>
                 <h1>Title: {post.title}</h1>
                 <p>Body: {post.body}</p>
               </div>
